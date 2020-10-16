@@ -6,6 +6,7 @@ const escuela = document.getElementById("4");
 const plaza = document.getElementById("5");
 const cine = document.getElementById("6");
 const futbol = document.getElementById("7");
+const button = document.getElementById("button");
 
 var entidades = new Array();
 entidades.push(casa);
@@ -26,14 +27,18 @@ termos.push(termoB);
 termos.push(termoC);
 termos.push(termoE);
 
-
 function removerColor(termo) {
-	if( termo.classList.contains('bueno') )
+	if ( termo.classList.contains('bueno') ) {
 		termo.classList.remove('bueno');
-	if( termo.classList.contains('neutro') )
+	}
+
+	if ( termo.classList.contains('neutro') ) {
 		termo.classList.remove('neutro');
-	if( termo.classList.contains('malo') )
+	}
+
+	if ( termo.classList.contains('malo') ) {
 		termo.classList.remove('malo');
+	}
 }
 
 
@@ -64,15 +69,16 @@ function mover(data, entidades, termometros) {
 
 
 	if(cont >= data.length) {
-		clearInterval(repeticion);
+		finalMessage();
+		return;
 	}
 
- 	entidades[ data[cont-4] ].classList.toggle('selec');
-	entidades[ data[cont] ].classList.toggle('selec');
+ 	entidades[data[cont-4]].classList.toggle('selec');
+	entidades[data[cont]].classList.toggle('selec');
 
-	removerColor(termometros[0])
-	removerColor(termometros[1])
-	removerColor(termometros[2])
+	removerColor(termometros[0]);
+	removerColor(termometros[1]);
+	removerColor(termometros[2]);
 
 	termometros[0].classList.toggle( nombreTermo[data[cont+1]] );
 	termometros[1].classList.toggle( nombreTermo[data[cont+2]] );
@@ -81,4 +87,14 @@ function mover(data, entidades, termometros) {
 
 	cont += 4;
 }
-var repeticion =  setInterval('mover(datos, entidades, termos)', 3000);
+var intervalProcess;
+
+function buttonHendler() {
+	button.disabled = true;
+	intervalProcess = setInterval('mover(datos, entidades, termos)', 3000);
+}
+
+function finalMessage() {
+	clearInterval(intervalProcess);
+	alert('La simulación ha terminado');
+}
