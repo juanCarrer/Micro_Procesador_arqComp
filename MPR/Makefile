@@ -52,12 +52,18 @@ OBJS   = $(SRCS:.cpp=.o)
 $(TARGET): $(OBJS) $(SRCH)
 	$(CC) $(CFLAGS) $(INCDIR) $(LIBDIR) -o $@ $(OBJS) $(LIBS) 2>&1 | c++filt
 
-all: $(TARGET)
+brain: brain.cpp
+	g++ -Wall -std=c++11 brain.cpp -o brain.exe
+
+conexion: conexion.cpp
+	g++ -Wall -std=c++11 conexion.cpp -o conexion.exe -lpthread 
+
+all: $(TARGET) brain conexion
 
 .cpp.o:
 	$(CC) $(CFLAGS) $(INCDIR) -c $<
 
 clean:
-	rm -f $(OBJS) *~ $(TARGET) *.bak $(TARGET).stackdump *.vcd
+	rm -f $(OBJS) *~ $(TARGET) *.bak $(TARGET).stackdump *.vcd brain.exe conexion.exe
 
 #---------------------------------- FIN -----------------------------------
