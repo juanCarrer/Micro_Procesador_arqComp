@@ -3,7 +3,7 @@
 Se crea un repositorio para la simulacion de un microprocesador, producto implementado en la materia de Arquitectura de Computadoras. Se necesita tener instalado SystemC.
 
 # Diseño del MicroProcesador
-	![Diseño Microprocesador](https://github.com/Laura943/Micro_Procesador_arqComp/bolb/master/MPR.png)s
+	![Diseño Microprocesador](https://raw.githubusercontent.com/juanCarrer/Micro_Procesador_arqComp/master/design/MPR.png "Diseño")
 
 # Proceso de Instalacion de SystemC
 
