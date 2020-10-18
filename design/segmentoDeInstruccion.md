@@ -60,11 +60,11 @@
 - # AND
 #### Realiza la operación AND 
 ```
- 0100 -- Resultado(dirección archivo registro) - operando1(dirección archivo de registro) - operando2(dirección archivo de registro) 
+ 0101 -- Resultado(dirección archivo registro) - operando1(dirección archivo de registro) - operando2(dirección archivo de registro) 
 ```
 #####  Ejemplo
 ```
-0100 1010 0000 0110
+0101 1010 0000 0110
 ```
 
 ***
