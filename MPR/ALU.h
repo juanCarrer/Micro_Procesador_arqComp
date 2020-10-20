@@ -30,7 +30,10 @@ SC_MODULE( Alu ) {
 				break;
 			
 			case 1: //suma
+				cout << "[ALU] OPERACION DE SUMA" << endl; // log
 				resultado = data_op1.read() + data_op2.read();
+				cout << resultado << " = " << data_op1.read() << " + " << data_op2.read() << endl; // log
+				cout << "----------" << endl;
 				jump = 0;		
 				break;
 			

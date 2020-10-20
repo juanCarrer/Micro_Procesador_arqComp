@@ -7,8 +7,6 @@
 #include <fstream>
 #include "macros.h"
 
-
- 
 using namespace std;
  
 static bool terminado = false;
@@ -34,7 +32,7 @@ int main()
 }
 
 void escritor() { // mpr
-	cout << "se prendio el mpr" << endl;
+	cout << "[CONEXION] " << "se prendio el mpr" << endl;
 	system("./main.exe");
 	
 	terminado = true;
@@ -42,7 +40,7 @@ void escritor() { // mpr
 
 void brain() {
 
-	cout << "se prendio el brain" << endl;
+	cout << "[CONEXION] " << "se prendio el brain" << endl;
 	system ("./brain.exe");
 	if(terminado) 
 		return ;
@@ -56,15 +54,15 @@ void observador() {
 	
 	
 	if(!hist) {
-		cout << "no se pudo abrir historial" << endl;
+		cout << "[CONEXION] " << "no se pudo abrir historial" << endl;
 	}
 	
 	if(!datos) {
-		cout << "no se pudo abrir datoss" << endl;
+		cout << "[CONEXION] " << "no se pudo abrir datoss" << endl;
 	}
 	
 	if(!datos || !hist) {
-		cout << "error al abrir los archivos " << endl;
+		cout << "[CONEXION] " << "error al abrir los archivos " << endl;
 		exit(1);
 	}
 	
@@ -73,7 +71,7 @@ void observador() {
 	moverLinea(datos, 15);
 	datos >> ultimo;	
 	actual = ultimo;
-	cout << "*el nuevo dato en la linea 15 es: " << actual << endl; // log
+	cout << "[CONEXION] " << "*el nuevo dato en la linea 15 es: " << actual << endl; // log
 	
 	datos.close();
 	while( !terminado ) {
@@ -85,19 +83,19 @@ void observador() {
 		moverLinea(datos, 12);
 		datos >> actual;
 		hist << endl << actual ;
-		cout << "se guardo " << actual << endl;
+		cout << "[CONEXION] " << "se guardo " << actual << endl;
 		moverLinea(datos, 13);
 		datos >> actual;
 		hist << endl << actual ;
-		cout << "se guardo " << actual << endl;
+		cout << "[CONEXION] " << "se guardo " << actual << endl;
 		moverLinea(datos, 14);
 		datos >> actual;
 		hist << endl << actual ;
-		cout << "se guardo " << actual << endl;
+		cout << "[CONEXION] " << "se guardo " << actual << endl;
 		moverLinea(datos, 15);
 		datos >> actual;
 		hist << endl << actual ;
-		cout << "se guardo " << actual << endl;
+		cout << "[CONEXION] " << "se guardo " << actual << endl;
 		
 
 

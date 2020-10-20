@@ -37,10 +37,11 @@ SC_MODULE( Pc ) {
 	}
 	
 	void write() {
+		if(instructionLine > NUM_INSTRUCTIONS+4) { 
+			cout << "[PC] se temino la ejecucion del procesador" << endl; // log
+			sc_stop();
+		}  
 		
-			if(instructionLine > NUM_INSTRUCTIONS+4) { 
-				sc_stop();
-			}  
 		instructionOut.write( instructionLine );
 	}
 

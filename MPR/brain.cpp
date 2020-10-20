@@ -7,7 +7,8 @@
 #include <fstream>
 #include "macros.h"
 
-#define NUM_MOVIMIENTOS 3
+// cantidad de instrucciones / 28
+#define NUM_MOVIMIENTOS 9
 
 using namespace std;
 
@@ -18,15 +19,15 @@ typedef struct {
 	int emocional;
 	
 	void imprimir() { 
-		cout << "entidad: " << entidad << endl;
-		cout << "biologico: " << biologico << endl;
-		cout << "cultural: " << cultural << endl; 
-		cout << "emocional: " << emocional << endl << endl; 
+		cout << "[BRAIN] " << "entidad: " << entidad << endl;
+		cout << "[BRAIN] " << "biologico: " << biologico << endl;
+		cout << "[BRAIN] " << "cultural: " << cultural << endl; 
+		cout << "[BRAIN] " << "emocional: " << emocional << endl << endl; 
 	}
 }Estado;
 
-int calcular_termometro();
-int calcular_entidad(); 
+int calcular_termometro(); // numero entre 1 y 3
+int calcular_entidad();  // numero entre 0 y 7
 void escribir_memoria_inicial( Estado ); // escribe la los primeros 4
 void escribir_memoria( Estado, Estado ); // escribe en los 4 siguientes 
 void leer_historial( Estado & );
@@ -39,7 +40,7 @@ void cambiarLinea(string nombreArchivo, int lineaBuscada, int remplazar);
 int main() {
 	// se escribe en la memoria de instruccion
 	//se lee desde historial 
-	
+	cout << "[BRAIN] " << "ejecutando Brain" << endl;//log
 	
 	srand(time(NULL));
 	Estado estadoActual;
@@ -52,7 +53,7 @@ int main() {
 
 
 	escribir_memoria_inicial( estadoActual ); // escribe el estado inicial en el que empieza el brain
-	cout << "el estado inicial es: " << endl;
+	cout << "[BRAIN] " << "el estado inicial es: " << endl;
 	estadoActual.imprimir();
 	
 	for(int i = 0; i < NUM_MOVIMIENTOS; i++ ) {
@@ -68,15 +69,15 @@ int main() {
 	
 		escribir_memoria( estadoActual, estadoEntidad );
 		
-
+		cout << "[BRAIN] " << "antes de dormir" << endl;
 		std::this_thread::sleep_for (std::chrono::seconds(NUM_INSTRUCTIONS / NUM_MOVIMIENTOS));
-		
+		cout << "[BRAIN] " << "se despierta la rama" << endl;
 		
 		leer_historial( estadoActual );
-		cout << "el estado actual es" << endl;
+		cout << "[BRAIN] " << "el estado actual es" << endl;
 		estadoActual.imprimir();
 	}
-	
+	cout << "[BRAIN] " << "TERMINO LS EJECUCION DEL BRAIN" << endl;
 
 	return 0;
 }
@@ -143,9 +144,9 @@ void escribir_memoria( Estado actual, Estado entidad) {// escribe en los 4 sigui
 		e = -1;
 	}
 	//log
-	cout << "al estado actual " << endl;
+	cout << "[BRAIN] " << "al estado actual " << endl;
 	actual.imprimir();
-	cout << "se escribiran los datos " << entidad.entidad << " " << b << " " << c  << " " << e << endl;
+	cout << "[BRAIN] " << "se escribiran los datos " << entidad.entidad << " " << b << " " << c  << " " << e << endl;
 	
 
 	cambiarLinea("memoriaPrincipal.txt", 4, entidad.entidad);
@@ -160,7 +161,7 @@ void leer_historial( Estado &actual) { // despues de computado el estado actual 
 	ifstream historial("../historial.txt");
 	
 	if( !historial ) {
-		cout << "no se pudo abrir el archivo de historial.txt" << endl;
+		cout << "[BRAIN] "<< "no se pudo abrir el archivo de historial.txt" << endl;
 		exit(1);
 	}
 	
@@ -209,7 +210,7 @@ void cambiarLinea(string nombreArchivo, int lineaBuscada, int remplazar) {
 	int contenido, i;
 	
 	if(!temp || !archivo) {
-		cout << "en cambiar linea no se pudo abrir el archivo " << nombreArchivo <<  endl;
+		cout << "[BRAIN] " << "en cambiar linea no se pudo abrir el archivo " << nombreArchivo <<  endl;
 		exit(1);
 	}
 

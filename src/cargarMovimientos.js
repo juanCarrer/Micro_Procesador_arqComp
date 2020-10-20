@@ -50,12 +50,8 @@ var ruta = './historial.txt';
 archivo.open("GET", ruta, false);
 archivo.send(null);
 var txt = archivo.responseText;
-for(var i = 0; i < txt.length; i++ ) {
-	if(!isNaN( parseInt(txt[i]) )  )
-		datos.push( parseInt(txt[i]));
-
-}
-
+txt = txt.split(/\n/);
+datos = txt.map(element => parseInt(element));
 
 
 var cont = 4;
@@ -80,11 +76,11 @@ function mover(data, entidades, termometros) {
 	removerColor(termometros[1]);
 	removerColor(termometros[2]);
 
-	termometros[0].classList.toggle( nombreTermo[data[cont+1]] );
-	termometros[1].classList.toggle( nombreTermo[data[cont+2]] );
-	termometros[2].classList.toggle( nombreTermo[data[cont+3]] );
+	termometros[0].classList.toggle( calcularEstadoTermo(data[cont+1]) );
+	termometros[1].classList.toggle( calcularEstadoTermo(data[cont+2]) );
+	termometros[2].classList.toggle( calcularEstadoTermo(data[cont+3]) );
 
-
+	console.log('cont es', cont)
 	cont += 4;
 }
 var intervalProcess;
@@ -97,4 +93,16 @@ function buttonHendler() {
 function finalMessage() {
 	clearInterval(intervalProcess);
 	alert('La simulación ha terminado');
+}
+
+function calcularEstadoTermo(valor) {
+	if (valor <= 1) {
+		return 'bueno';
+	}
+	else if (valor === 2) {
+		return 'neutro';
+	}
+	else if (valor >= 3) {
+		return 'malo';
+	}
 }

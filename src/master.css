@@ -53,6 +53,14 @@ main {
 	background-image: url("./images/crus_selec.png");
 }
 
+.termometros {
+		background-color: #f8f8f8;
+}
+
+.termometros h1 {
+	margin: 0;
+}
+
 .termometros div {
 	display: flex;
 	align-items: center;
@@ -82,4 +90,22 @@ main {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
+}
+
+.leyenda {
+	background-color: #f8f8f8;
+}
+
+.leyenda__title {
+	font-size: 42px;
+	text-align: center;
+}
+
+.leyenda__item {
+	display: flex;
+	max-width: 800px;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 auto;
+	margin-bottom: 20px;
 }

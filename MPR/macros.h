@@ -3,7 +3,7 @@
 
 #define INSTRUCTION_SIZE 16
 #define DATA_SIZE 32 
-#define NUM_INSTRUCTIONS 84
+#define NUM_INSTRUCTIONS 252
 
 
 #endif //MACROS_H
